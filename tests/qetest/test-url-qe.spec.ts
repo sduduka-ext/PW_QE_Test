@@ -2,18 +2,18 @@
  import { test ,expect} from '@playwright/test';
 //const { test, expect } = require('@playwright/test');
 //const fs = require('fs');
-
+import {ENV} from "../../utils/env"; // Ensure the file exists at 'c:\QE_PW_Test\tests\utils\env.ts' or update the path accordingly
 test.describe('Check URL and its links', async () => {
   
     test('Link Shop', async ({ page }) => {
-        console.log("Navigate - "+process.env.FAQ_URL+" with locale >>>"+process.env.locale);
-        if(process.env.locale === "en_US")
-        {
-          await page.goto(process.env.FAQ_URL_enUS || 'https://default-url-en-us.com');
-        }else
-        {
+        console.log(process.env.ENV+" >>>> Navigate - "+process.env.FAQ_URL+" with locale >>>"+process.env.locale);
+        // if(process.env.locale === "en_US")
+        // {
+        //   await page.goto(process.env.FAQ_URL_enUS || 'https://default-url-en-us.com');
+        // }else
+        // {
           await page.goto(process.env.FAQ_URL || 'https://default-url.com');
-        }
+       // }
         const linksRef=await page.locator('a').evaluateAll(evalHref => evalHref.map(eh=> eh.getAttribute('href')));
           console.log("Links hrefs are >>> "+linksRef.length);
           for(let i=0; i<linksRef.length; i++)
