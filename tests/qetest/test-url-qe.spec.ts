@@ -18,30 +18,37 @@ test.describe('Check URL and its links', async () => {
 
   test('Link Stream', async ({ page }) => {
     const faqPageInstance = new faqPage(page);
-    faqPageInstance.clickLinkStream();
-    faqPageInstance.navigateGoBack();
+    console.log(process.env.ENV + " >>>> Navigate - " + process.env.FAQ_URL + " with locale >>>" + process.env.locale);
+    await faqPageInstance.navigateURL(process.env.FAQ_URL || 'https://default-url.com');
+    await faqPageInstance.clickLinkStream();
+    await faqPageInstance.navigateGoBack();
   });
   test('Link Become an Affiliate', async ({ page }) => {
+
     const faqPageInstance = new faqPage(page);
-    faqPageInstance.clickLinkBecomeAnAffiliate();
-    faqPageInstance.navigateGoBack();
+    await faqPageInstance.navigateURL(process.env.FAQ_URL || 'https://default-url.com');
+    await faqPageInstance.clickLinkBecomeAnAffiliate();
+    await faqPageInstance.navigateGoBack();
   });
   test('Link Manage Nutrition Subscription', async ({ page }) => {
     const faqPageInstance = new faqPage(page);
-    faqPageInstance.clickLinkManageNutritionSubscription();
+    await faqPageInstance.navigateURL(process.env.FAQ_URL || 'https://default-url.com');
+    await faqPageInstance.clickLinkManageNutritionSubscription();
     await page.getByText('This site can’t be reached').click();
-    faqPageInstance.navigateGoBack();
+    await faqPageInstance.navigateGoBack();
   });
   test('Link Manage Digital Membership', async ({ page }) => {
     const faqPageInstance = new faqPage(page);
-    faqPageInstance.clickLinkManageDigitalMembership();
+    await faqPageInstance.navigateURL(process.env.FAQ_URL || 'https://default-url.com');
+    await faqPageInstance.clickLinkManageDigitalMembership();
     await page.getByText('This site can’t be reached').click();
-    faqPageInstance.navigateGoBack();
+    await faqPageInstance.navigateGoBack();
   });
   test('Order Status', async ({ page }) => {
     const faqPageInstance = new faqPage(page);
-    faqPageInstance.clickLinkOrderStatus();
-    faqPageInstance.navigateGoBack();
+    await faqPageInstance.navigateURL(process.env.FAQ_URL || 'https://default-url.com');
+    await faqPageInstance.clickLinkOrderStatus();
+    await faqPageInstance.navigateGoBack();
     //  await page.goto('chrome-error://chromewebdata/');
     //   await page.getByText('This page isn’t working').click();
     //   await page.getByRole('link', { name: 'Return or Exchange' }).click();
