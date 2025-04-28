@@ -8,7 +8,6 @@ import { ENV } from "../../utils/env"; // Ensure the file exists at 'c:\QE_PW_Te
 test.describe('Check URL and its links', async () => {
 
   test('Link Shop', async ({ page }) => {
-
     console.log(process.env.ENV + " >>>> Navigate - " + process.env.FAQ_URL + " with locale >>>" + process.env.locale);
     const faqPageInstance = new faqPage(page);
     await faqPageInstance.navigateURL(process.env.FAQ_URL || 'https://default-url.com');
@@ -30,7 +29,6 @@ test.describe('Check URL and its links', async () => {
   test('Link Manage Nutrition Subscription', async ({ page }) => {
     const faqPageInstance = new faqPage(page);
     faqPageInstance.clickLinkManageNutritionSubscription();
-
     await page.getByText('This site can’t be reached').click();
     faqPageInstance.navigateGoBack();
   });
@@ -43,7 +41,6 @@ test.describe('Check URL and its links', async () => {
   test('Order Status', async ({ page }) => {
     const faqPageInstance = new faqPage(page);
     faqPageInstance.clickLinkOrderStatus();
-
     faqPageInstance.navigateGoBack();
     //  await page.goto('chrome-error://chromewebdata/');
     //   await page.getByText('This page isn’t working').click();
