@@ -83,10 +83,14 @@ export class faqPage {
     }
 
     async clickOpenSourceButton() {
-    await this.openSourceButton.click();
+        await this.openSourceButton.click();
     }
 
     async clickUxuiButton() {
-    await this.uxUiButton.click();
+        await this.uxUiButton.click();
+    }
+
+    async waitPagePromise(int = 1000) {
+        await this.page.waitForTimeout(int);
     }
 }

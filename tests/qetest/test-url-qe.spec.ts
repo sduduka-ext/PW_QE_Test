@@ -34,6 +34,7 @@ test.describe('Check URL and its links', async () => {
     const faqPageInstance = new faqPage(page);
     await faqPageInstance.navigateURL(process.env.FAQ_URL || 'https://default-url.com');
     await faqPageInstance.clickLinkManageNutritionSubscription();
+    await faqPageInstance.waitPagePromise(5000);
     await page.getByText('This site can’t be reached').click();
     await faqPageInstance.navigateGoBack();
   });
@@ -41,6 +42,7 @@ test.describe('Check URL and its links', async () => {
     const faqPageInstance = new faqPage(page);
     await faqPageInstance.navigateURL(process.env.FAQ_URL || 'https://default-url.com');
     await faqPageInstance.clickLinkManageDigitalMembership();
+    await faqPageInstance.waitPagePromise(5000);
     await page.getByText('This site can’t be reached').click();
     await faqPageInstance.navigateGoBack();
   });
