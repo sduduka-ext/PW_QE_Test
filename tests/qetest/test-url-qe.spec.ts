@@ -35,6 +35,7 @@ test.describe('Check URL and its links', async () => {
     await faqPageInstance.navigateURL(process.env.FAQ_URL || 'https://default-url.com');
     await faqPageInstance.clickLinkManageNutritionSubscription();
     await faqPageInstance.waitPagePromise(5000);
+    await page.getByText('This site can’t be reachedkklllkk ').click();
     if(await page.getByText('This site can’t be reached').isVisible()){
       console.log('This site can’t be reached is visible');
       await page.getByText('This site can’t be reached').focus();
