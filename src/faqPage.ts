@@ -15,6 +15,20 @@ export class faqPage {
     public manageNutritionSubscriptionLink;
     public manageDigitalMembershipLink;
     public orderStatusLink;
+    public myordersLink;
+    public returnandexchangeLink;
+    public updateaccountLink;
+    public updatepaymentmethodLink;
+    public partnerformsLink;
+    public myshakeologylink;
+    public bodilink;
+    public bikelink;
+    public allorderslink;
+    public myaccountlink;
+    public technicalsupportlink;
+    public affiliatelink;
+    public productinfolink;
+
     constructor(private page: Page) {
         this.cookieButton = this.page.getByRole('button', { name: 'Accept All Cookies' });
         this.searchInput = this.page.locator('input[id="resources-input"]');
@@ -29,6 +43,21 @@ export class faqPage {
         this.golangLink = this.page.locator('a[href="https://resources.codilime.com/golang-checklist/"]');
         this.valesLink = this.page.locator('a[href="https://codisec.com/veles/"]');
         this.uxAppLink = this.page.locator('a[href="https://events.codilime.com/ux-in-network-applications"]');
+        this.myordersLink = this.page.getByRole('link', { name: 'My Orders' });
+        this.returnandexchangeLink = this.page.getByRole('link', { name: 'Return or Exchange' });
+        this.updateaccountLink = this.page.getByRole('link', { name: 'Update Account' });
+        this.updatepaymentmethodLink = this.page.getByRole('link', { name: 'Update Payment Method' });
+        this.partnerformsLink = this.page.getByRole('link', { name: 'Partner Forms' });
+
+        this.myshakeologylink=this.page.getByRole('link', { name: 'My Shakeology' });
+        this.bodilink=this.page.getByRole('link', { name: 'BODi' });
+        this.bikelink=this.page.getByRole('link', { name: 'Bike' });
+        this.allorderslink=this.page.getByRole('link', { name: 'All Orders' });
+        this.myaccountlink=this.page.getByRole('link', { name: 'My Account' });
+        this.technicalsupportlink=this.page.getByRole('link', { name: 'Technical Support /' });
+        this.affiliatelink=this.page.getByRole('link', { name: 'Affiliate Partner Support' });
+        this.productinfolink=this.page.getByRole('link', { name: 'Product Info, Offers, and' });
+
     }
 
     async navigateURL(url: string) {
@@ -92,5 +121,47 @@ export class faqPage {
 
     async waitPagePromise(int = 1000) {
         await this.page.waitForTimeout(int);
+    }
+
+    async clickmyordersLink() {
+        await this.myordersLink.click();
+    }
+
+    async clickreturnandexchangeLink() {
+        await this.returnandexchangeLink.click();
+    }
+    async clickupdateaccountLink() {
+        await this.updateaccountLink.click();
+    }
+    async clickupdatepaymentmethodLink() {
+        await this.updatepaymentmethodLink.click();
+    }
+    async clickpartnerformsLink() {
+        await this.partnerformsLink.click();
+    }
+   
+    async clickmyshakeologylink() {
+        await this.myshakeologylink.click();
+    }
+    async clickbodilink() {
+        await this.bodilink.click();
+    }
+    async clickbikelink() {
+        await this.bikelink.click();
+    }
+    async clickallorderslink() {
+        await this.allorderslink.click();
+    }
+    async clickmyaccountlink() {
+        await this.myaccountlink.click();
+    }
+    async clicktechnicalsupportlink() {
+        await this.technicalsupportlink.click();
+    }
+    async clickaffiliatelink() {
+        await this.affiliatelink.click();
+    }
+    async clickproductinfolink() {
+        await this.productinfolink.click();
     }
 }
