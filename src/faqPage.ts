@@ -1,4 +1,4 @@
-import { Page } from '@playwright/test';
+import { expect, Page } from '@playwright/test';
 
 export class faqPage {
 
@@ -59,6 +59,12 @@ export class faqPage {
     async clickLinkOrderStatus() {
         await this.orderStatusLink.click();
     }
+
+    async verifyBodiUrl() {
+        console.log("page.url >>>> " +(this.page.url()));
+        await expect.soft(this.page).toHaveURL(/.*faq?\.bodi.*/);
+    }
+
     async fillSearchInput(text: string) {
         await this.searchInput.fill(text);
     }

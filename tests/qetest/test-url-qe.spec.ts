@@ -6,33 +6,38 @@ import { faqPage } from '../../src/faqPage';
 
 import { ENV } from "../../utils/env"; // Ensure the file exists at 'c:\QE_PW_Test\tests\utils\env.ts' or update the path accordingly
 test.describe('Check URL and its links', async () => {
-
-  test('Link Shop', async ({ page }) => {
+  async function testUrl(page,url) {
     console.log(process.env.ENV + " >>>> Navigate - " + process.env.FAQ_URL + " with locale >>>" + process.env.locale);
+    await page.navigateURL(url);
+    await page.verifyBodiUrl();
+    //    page.verifyBodiUrl(); // Removed as 'verifyBodiUrl' is not a method of 'Page'
+  }
+  test('Link Shop', { tag: "@sanity", },async ({ page }) => {
     const faqPageInstance = new faqPage(page);
-    await faqPageInstance.navigateURL(process.env.FAQ_URL || 'https://default-url.com');
     //  faqPageInstance.getAllLinks();
+    await testUrl (faqPageInstance, process.env.FAQ_URL || 'https://default-url.com');
     await faqPageInstance.clickLinkShop();
     await faqPageInstance.navigateGoBack();
   });
 
-  test('Link Stream', async ({ page }) => {
+  test('Link Stream', { tag: "@sanity", }, async ({ page }) => {
     const faqPageInstance = new faqPage(page);
-    console.log(process.env.ENV + " >>>> Navigate - " + process.env.FAQ_URL + " with locale >>>" + process.env.locale);
-    await faqPageInstance.navigateURL(process.env.FAQ_URL || 'https://default-url.com');
+    //  faqPageInstance.getAllLinks();
+    await testUrl (faqPageInstance, process.env.FAQ_URL || 'https://default-url.com');
     await faqPageInstance.clickLinkStream();
     await faqPageInstance.navigateGoBack();
   });
-  test('Link Become an Affiliate', async ({ page }) => {
-
+  test('Link Become an Affiliate', { tag: "@sanity", }, async ({ page }) => {
     const faqPageInstance = new faqPage(page);
-    await faqPageInstance.navigateURL(process.env.FAQ_URL || 'https://default-url.com');
+    //  faqPageInstance.getAllLinks();
+    await testUrl (faqPageInstance, process.env.FAQ_URL || 'https://default-url.com');
     await faqPageInstance.clickLinkBecomeAnAffiliate();
     await faqPageInstance.navigateGoBack();
   });
-  test('Link Manage Nutrition Subscription', async ({ page }) => {
+  test('Link Manage Nutrition Subscription', { tag: "@sanity", }, async ({ page }) => {
     const faqPageInstance = new faqPage(page);
-    await faqPageInstance.navigateURL(process.env.FAQ_URL || 'https://default-url.com');
+    //  faqPageInstance.getAllLinks();
+    await testUrl (faqPageInstance, process.env.FAQ_URL || 'https://default-url.com');
     await faqPageInstance.clickLinkManageNutritionSubscription();
     await faqPageInstance.waitPagePromise(5000);
     
@@ -45,9 +50,10 @@ test.describe('Check URL and its links', async () => {
     }
     await faqPageInstance.navigateGoBack();
   });
-  test('Link Manage Digital Membership', async ({ page }) => {
+  test('Link Manage Digital Membership', { tag: "@sanity", }, async ({ page }) => {
     const faqPageInstance = new faqPage(page);
-    await faqPageInstance.navigateURL(process.env.FAQ_URL || 'https://default-url.com');
+    //  faqPageInstance.getAllLinks();
+    await testUrl (faqPageInstance, process.env.FAQ_URL || 'https://default-url.com');
     await faqPageInstance.clickLinkManageDigitalMembership();
     await faqPageInstance.waitPagePromise(5000);
     if(await page.getByText('This site can’t be reached').isVisible()){
@@ -59,9 +65,10 @@ test.describe('Check URL and its links', async () => {
     }
     await faqPageInstance.navigateGoBack();
 });
-  test('Order Status', async ({ page }) => {
+  test('Order Status', { tag: "@sanity", }, async ({ page }) => {
     const faqPageInstance = new faqPage(page);
-    await faqPageInstance.navigateURL(process.env.FAQ_URL || 'https://default-url.com');
+    //  faqPageInstance.getAllLinks();
+    await testUrl (faqPageInstance, process.env.FAQ_URL || 'https://default-url.com');
     await faqPageInstance.clickLinkOrderStatus();
     await faqPageInstance.navigateGoBack();
     //  await page.goto('chrome-error://chromewebdata/');
