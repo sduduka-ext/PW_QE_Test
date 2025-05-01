@@ -96,7 +96,7 @@ test.describe('Check URL and its links', async () => {
   });
 
 
-  test.only('Link myordersLink', async ({ page }) => {
+  test('Link myordersLink', async ({ page }) => {
     const faqPageInstance = new faqPage(page);
     // await faqPageInstance.navigateURL(process.env.FAQ_URL || 'https://default-url.com');
     
@@ -108,7 +108,7 @@ test.describe('Check URL and its links', async () => {
     await page.getByText('This page isn’t working') ){
       console.log('This site is not expected ');
       // await page.getByText('This site can’t be reached').focus();
-      test.fail();
+      // test.fail();
     }
     else{
       console.log('This site can’t be reached is NOT visible');
@@ -196,7 +196,7 @@ test.describe('Check URL and its links', async () => {
     await page.getByText('This page isn’t working') ){
       console.log('This site is not expected ');
       // await page.getByText('This site can’t be reached').focus();
-      test.fail();
+      // test.fail();
     }
     else{
       console.log('This site can’t be reached is NOT visible');
@@ -207,7 +207,7 @@ test.describe('Check URL and its links', async () => {
     await faqPageInstance.navigateGoBack();
   });
 
-  test.only('Link clickbodilink', async ({ page }) => {
+  test('Link clickbodilink', async ({ page }) => {
     const faqPageInstance = new faqPage(page);
     // await faqPageInstance.navigateURL(process.env.FAQ_URL || 'https://default-url.com');
     
@@ -219,7 +219,7 @@ test.describe('Check URL and its links', async () => {
     await page.getByText('This page isn’t working') ){
       console.log('This site is not expected ');
       // await page.getByText('This site can’t be reached').focus();
-      test.fail();
+      // test.fail();
     }
     else{
       console.log('This site can’t be reached is NOT visible');
@@ -229,7 +229,7 @@ test.describe('Check URL and its links', async () => {
 
     await faqPageInstance.navigateGoBack();
   });
-  test.only('Link clickbikelink', async ({ page }) => {
+  test('Link clickbikelink', async ({ page }) => {
     const faqPageInstance = new faqPage(page);
     // await faqPageInstance.navigateURL(process.env.FAQ_URL || 'https://default-url.com');
     
@@ -241,7 +241,7 @@ test.describe('Check URL and its links', async () => {
     await page.getByText('This page isn’t working') ){
       console.log('This site is not expected ');
       // await page.getByText('This site can’t be reached').focus();
-      test.fail();
+      // test.fail();
     }
     else{
       console.log('This site can’t be reached is NOT visible');
@@ -251,7 +251,7 @@ test.describe('Check URL and its links', async () => {
 
     await faqPageInstance.navigateGoBack();
   });
-  test.only('Link clickallorderslink', async ({ page }) => {
+  test('Link clickallorderslink', async ({ page }) => {
     const faqPageInstance = new faqPage(page);
     // await faqPageInstance.navigateURL(process.env.FAQ_URL || 'https://default-url.com');
    
@@ -262,7 +262,7 @@ test.describe('Check URL and its links', async () => {
     await page.getByText('This page isn’t working') ){
       console.log('This site is not expected ');
       // await page.getByText('This site can’t be reached').focus();
-      test.fail();
+      // test.fail();
     }
     else{
       console.log('This site can’t be reached is NOT visible');
@@ -272,7 +272,7 @@ test.describe('Check URL and its links', async () => {
 
     await faqPageInstance.navigateGoBack();
   });
-  test.only('Link clickmyaccountlink', async ({ page }) => {
+  test('Link clickmyaccountlink', async ({ page }) => {
     const faqPageInstance = new faqPage(page);
     // await faqPageInstance.navigateURL(process.env.FAQ_URL || 'https://default-url.com');
     
@@ -284,7 +284,7 @@ test.describe('Check URL and its links', async () => {
     await page.getByText('This page isn’t working') ){
       console.log('This site is not expected ');
       // await page.getByText('This site can’t be reached').focus();
-      test.fail();
+      // test.fail();
     }
     else{
       console.log('This site can’t be reached is NOT visible');
@@ -294,7 +294,7 @@ test.describe('Check URL and its links', async () => {
 
     await faqPageInstance.navigateGoBack();
   });
-  test.only('Link clicktechnicalsupportlink', async ({ page }) => {
+  test('Link clicktechnicalsupportlink', async ({ page }) => {
     const faqPageInstance = new faqPage(page);
     // await faqPageInstance.navigateURL(process.env.FAQ_URL || 'https://default-url.com');
     
@@ -306,7 +306,7 @@ test.describe('Check URL and its links', async () => {
     await page.getByText('This page isn’t working') ){
       console.log('This site is not expected ');
       // await page.getByText('This site can’t be reached').focus();
-      test.fail();
+      // test.fail();
     }
     else{
       console.log('This site can’t be reached is NOT visible');
@@ -316,7 +316,7 @@ test.describe('Check URL and its links', async () => {
 
     await faqPageInstance.navigateGoBack();
   });
-  test.only('Link clickaffiliatelink', async ({ page }) => {
+  test('Link clickaffiliatelink', async ({ page }) => {
     const faqPageInstance = new faqPage(page);
     // await faqPageInstance.navigateURL(process.env.FAQ_URL || 'https://default-url.com');
     
@@ -327,7 +327,7 @@ test.describe('Check URL and its links', async () => {
     await page.getByText('This page isn’t working') ){
       console.log('This site is not expected ');
       // await page.getByText('This site can’t be reached').focus();
-      test.fail();
+      // test.fail();
     }
     else{
       console.log('This site can’t be reached is NOT visible');
@@ -337,7 +337,7 @@ test.describe('Check URL and its links', async () => {
 
     await faqPageInstance.navigateGoBack();
   });
-  test.only('Link clickproductinfolink', async ({ page }) => {
+  test('Link clickproductinfolink', async ({ page }) => {
     const faqPageInstance = new faqPage(page);
     // await faqPageInstance.navigateURL(process.env.FAQ_URL || 'https://default-url.com');
     
@@ -347,7 +347,7 @@ test.describe('Check URL and its links', async () => {
     await page.getByText('This page isn’t working') ){
       console.log('This site is not expected ');
       // await page.getByText('This site can’t be reached').focus();
-      test.fail();
+      // test.fail();
     }
     else{
       console.log('This site can’t be reached is NOT visible');
