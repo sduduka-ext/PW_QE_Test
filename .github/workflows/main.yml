@@ -61,7 +61,7 @@ jobs:
       run: npm install dotenv --save
     - name: Run Playwright tests from package.json file mentioned
       run: |
-        npx playwright test tests/qetest/test-url-qe.spec.ts --project ${{ github.event.inputs.browser }} -g "${{ github.event.inputs.tags }}" -g "${{ github.event.inputs.testName }}" --headed --trace on --log-level "${{ github.event.inputs.logLevel }}"
+        npx playwright test tests/qetest/test-url-qe.spec.ts --project ${{ github.event.inputs.browser }} -g "${{ github.event.inputs.tags }}" -g "${{ github.event.inputs.testName }}" --headed
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
