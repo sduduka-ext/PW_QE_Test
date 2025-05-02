@@ -58,7 +58,7 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests from package.json file mentioned
-      run: npm run testFromGit_${{ github.event.inputs.environment }} --project ${{ github.event.inputs.browser }} -g "${{ github.event.inputs.tags }}" -g "${{ github.event.inputs.testName }}" --headed --trace on --log-level "${{ github.event.inputs.logLevel }}"
+      run: ENV=${{ github.event.inputs.environment }} npx playwright testFromGit_${{ github.event.inputs.environment }} --project ${{ github.event.inputs.browser }} -g "${{ github.event.inputs.tags }}" -g "${{ github.event.inputs.testName }}" --headed --trace on --log-level "${{ github.event.inputs.logLevel }}"
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
