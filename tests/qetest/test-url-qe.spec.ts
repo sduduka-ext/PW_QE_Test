@@ -68,6 +68,7 @@ test.describe('Check URL and its links', async () => {
   test('Order Status', { tag: "@sanity", }, async ({ page }) => {
     const faqPageInstance = new faqPage(page);
     //  faqPageInstance.getAllLinks();
+    
     await testUrl (faqPageInstance, process.env.FAQ_URL || 'https://default-url.com');
     await faqPageInstance.clickLinkOrderStatus();
     await faqPageInstance.navigateGoBack();

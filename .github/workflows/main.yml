@@ -59,6 +59,8 @@ jobs:
       run: npx playwright install --with-deps chromium
     - name: To load env variables Install dotenv package
       run: npm install dotenv --save
+    - name: Set environment instance for run
+      run: $env:ENV='${{ github.event.inputs.ENV }}'
     - name: Run Playwright tests from package.json file mentioned
       run: |
         npx playwright test tests/qetest/test-url-qe.spec.ts --project ${{ github.event.inputs.browser }} -g "${{ github.event.inputs.tags }}" -g "${{ github.event.inputs.testName }}" --headed
