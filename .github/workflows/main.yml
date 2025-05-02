@@ -56,10 +56,12 @@ jobs:
     - name: Install dependencies
       run: npm ci
     - name: Install Playwright Browsers
-      run: npx playwright install --with-deps
+      run: npx playwright install --with-deps chromium
+    - name: To load env variables Install dotenv package
+      run: npm install dotenv --save
     - name: Run Playwright tests from package.json file mentioned
       run: |
-        ENV=${{ github.event.inputs.environment }} npx playwright test tests/qetest/test-url-qe.spec.ts --project ${{ github.event.inputs.browser }} -g "${{ github.event.inputs.tags }}" -g "${{ github.event.inputs.testName }}" --headed --trace on --log-level "${{ github.event.inputs.logLevel }}"
+        cross-env ENV=${{ github.event.inputs.environment }} npx playwright test tests/qetest/test-url-qe.spec.ts --project ${{ github.event.inputs.browser }} -g "${{ github.event.inputs.tags }}" -g "${{ github.event.inputs.testName }}" --headed --trace on --log-level "${{ github.event.inputs.logLevel }}"
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
