@@ -10,7 +10,7 @@
     "test:debug": "cross-env NODE_OPTIONS=--no-warnings playwright test --debug",
     "test:ui": "cross-env NODE_OPTIONS=--no-warnings playwright test --ui",
     "test:report": "cross-env NODE_OPTIONS=--no-warnings playwright show-report",
-    "testFromGit": "cross-env ENV=\"${{ github.event.inputs.environment }}\" npx playwright test tests/qetest/test-url-qe.spec.ts"
+    "testFromGit_stage": "cross-env ENV=stage npx playwright test tests/qetest/test-url-qe.spec.ts"
   },
   "keywords": [],
   "author": "",
