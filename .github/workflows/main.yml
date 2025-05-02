@@ -59,6 +59,9 @@ jobs:
       run: npx playwright install --with-deps chromium
     - name: To load env variables Install dotenv package
       run: npm install dotenv --save
+    - name: To load cross env var package
+      run: npm install --save-dev cross-env
+      
     - name: Set environment instance for run
       run: $env:ENV='${{ github.event.inputs.ENV }}'
     - name: Run Playwright tests from package.json file mentioned
