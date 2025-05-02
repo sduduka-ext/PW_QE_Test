@@ -1,4 +1,4 @@
-import { expect, Page } from '@playwright/test';
+import { test, expect, Page } from '@playwright/test';
 
 export class faqPage {
 
@@ -15,6 +15,31 @@ export class faqPage {
     public manageNutritionSubscriptionLink;
     public manageDigitalMembershipLink;
     public orderStatusLink;
+    public myordersLink;
+    public returnandexchangeLink;
+    public updateaccountLink;
+    public updatepaymentmethodLink;
+    public partnerformsLink;
+    public myshakeologylink;
+    public bodilink;
+    public bikelink;
+    public allorderslink;
+    public myaccountlink;
+    public technicalsupportlink;
+    public affiliatelink;
+    public productinfolink;
+    public chatwithbodi;
+    public signintotext;
+    public termsandconditions;
+    public privacypolicy;
+    public donotsellmyinfo;
+    public accessibilitystatement;
+    public californiasupplychain;
+    public consumerhealthdatapolicy;
+    public signin;
+    public searchbox;
+    public searchicon;
+
     constructor(private page: Page) {
         this.cookieButton = this.page.getByRole('button', { name: 'Accept All Cookies' });
         this.searchInput = this.page.locator('input[id="resources-input"]');
@@ -29,6 +54,34 @@ export class faqPage {
         this.golangLink = this.page.locator('a[href="https://resources.codilime.com/golang-checklist/"]');
         this.valesLink = this.page.locator('a[href="https://codisec.com/veles/"]');
         this.uxAppLink = this.page.locator('a[href="https://events.codilime.com/ux-in-network-applications"]');
+        this.myordersLink = this.page.getByRole('link', { name: 'My Orders' });
+        this.returnandexchangeLink = this.page.getByRole('link', { name: 'Return or Exchange' });
+        this.updateaccountLink = this.page.getByRole('link', { name: 'Update Account' });
+        this.updatepaymentmethodLink = this.page.getByRole('link', { name: 'Update Payment Method' });
+        this.partnerformsLink = this.page.getByRole('link', { name: 'Partner Forms' });
+        this.myshakeologylink = this.page.getByRole('link', { name: 'My Shakeology' });
+        this.bodilink = this.page.getByRole('link', { name: 'BODi' });
+        this.bikelink = this.page.getByRole('link', { name: 'Bike' });
+        this.allorderslink = this.page.getByRole('link', { name: 'All Orders' });
+        this.myaccountlink = this.page.getByRole('link', { name: 'My Account' });
+        this.technicalsupportlink = this.page.getByRole('link', { name: 'Technical Support /' });
+        this.affiliatelink = this.page.getByRole('link', { name: 'Affiliate Partner Support' });
+        this.productinfolink = this.page.getByRole('link', { name: 'Product Info, Offers, and' });
+        this.chatwithbodi = this.page.getByText('Chat with BODi');
+        this.signintotext = this.page.getByText('Sign in to Text with BODi');
+        this.termsandconditions = this.page.getByText('Terms and Conditions');
+        this.privacypolicy = this.page.getByText('Privacy Policy');
+        this.donotsellmyinfo = this.page.getByText('Do Not Sell My Info');
+        this.accessibilitystatement = this.page.getByText('Accessibility Statement');
+        this.californiasupplychain = this.page.getByText('California Supply Chain');
+        this.consumerhealthdatapolicy = this.page.getByText('Consumer Health Data Policy');
+        this.signin = this.page.getByRole('link', { name: 'Sign In' });
+        this.searchbox = this.page.getByRole('searchbox', { name: 'Enter a Question or FAQ #' });
+        this.searchicon = this.page.locator('#searchfaq');
+        
+
+
+
     }
 
     async navigateURL(url: string) {
@@ -60,11 +113,16 @@ export class faqPage {
         await this.orderStatusLink.click();
     }
 
-    async verifyBodiUrl() {
-        console.log("page.url >>>> " +(this.page.url()));
-        await expect.soft(this.page).toHaveURL(/.*faq?\.bodi.*/);
+    async entersearchbox(text: string) {
+        await this.searchbox.fill(text);
+        await this.searchicon.click();
+
     }
 
+    async verifyBodiUrl() {
+        console.log("page.url >>>> " + (this.page.url()));
+        await expect.soft(this.page).toHaveURL(/.*faq?\.bodi.*/);
+    }
     async fillSearchInput(text: string) {
         await this.searchInput.fill(text);
     }
@@ -98,5 +156,93 @@ export class faqPage {
 
     async waitPagePromise(int = 1000) {
         await this.page.waitForTimeout(int);
+    }
+
+    async clickmyordersLink() {
+        await this.myordersLink.click();
+    }
+
+    async clicksignin() {
+        await this.signin.click();
+
+    }
+
+    async clickreturnandexchangeLink() {
+        await this.returnandexchangeLink.click();
+    }
+    async clickupdateaccountLink() {
+        await this.updateaccountLink.click();
+    }
+    async clickupdatepaymentmethodLink() {
+        await this.updatepaymentmethodLink.click();
+    }
+    async clickpartnerformsLink() {
+        await this.partnerformsLink.click();
+    }
+
+    async clickmyshakeologylink() {
+        await this.myshakeologylink.click();
+    }
+    async clickbodilink() {
+        await this.bodilink.click();
+    }
+    async clickbikelink() {
+        await this.bikelink.click();
+    }
+    async clickallorderslink() {
+        await this.allorderslink.click();
+    }
+    async clickmyaccountlink() {
+        await this.myaccountlink.click();
+    }
+    async clicktechnicalsupportlink() {
+        await this.technicalsupportlink.click();
+    }
+    async clickaffiliatelink() {
+        await this.affiliatelink.click();
+    }
+    async clickproductinfolink() {
+        await this.productinfolink.click();
+    }
+    async clickchatwithbodi() {
+        await this.chatwithbodi.click();
+    }
+    async clicksignintotext() {
+        await this.signintotext.click();
+
+    }
+    async clicktermsandconditions() {
+        await this.termsandconditions.click();
+    }
+
+    async clickprivacypolicy() {
+        
+        await this.privacypolicy.click();
+    }
+
+    async clickdonotsellmyinfo() {
+        await this.donotsellmyinfo.click();
+    }
+    async clickaccessibilitystatement() {
+        await this.accessibilitystatement.click();
+    }
+    async clickcaliforniasupplychain() {
+        await this.californiasupplychain.click();
+    }
+    async clickconsumerhealthdatapolicy() {
+        await this.consumerhealthdatapolicy.click();
+
+
+    }
+    async verifysiteerror() {
+        if (await this.page.getByText('This site can’t be reached').isVisible()
+            ||
+            await this.page.getByText('This page isn’t working').isVisible()) {
+            console.log('This page is not as expected ');
+            test.fail();
+        }
+        else {
+            console.log('This site content is displaying without any error');
+        }
     }
 }

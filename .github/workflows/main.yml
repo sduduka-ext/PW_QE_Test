@@ -15,8 +15,22 @@ on:
         options:
         - stage
         - qa
-      tags:
+      browser :
         description: 'Test scenario tags'
+        required: true
+        default: 'chromium'
+        type: choice
+        options:
+        - chromium
+        - webkit
+        - firefox
+        #- all
+      tags:
+        description: 'Test scenario tags' #example: smoke, regression, all
+        required: false
+        type: string
+      testName:
+        description: 'Run Test with name' #example: smoke, regression, all
         required: false
         type: string
       logLevel:
@@ -42,10 +56,10 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests from package.json file mentioned
-      run: npm test
+      run: npm run testFromGit --project ${{ github.event.inputs.browser }} -g ${{ github.event.inputs.tags }} -g ${{ github.event.inputs.testName }} --headed --trace on --log-level ${{ github.event.inputs.logLevel }}
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
         name: playwright-report
         path: playwright-report/
-        retention-days: 30
+        retention-days: 15

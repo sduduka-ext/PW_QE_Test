@@ -9,7 +9,8 @@
     "test:stage": "cross-env ENV=stage npx playwright test tests/qetest/test-url-qe.spec.ts -g \"Link Shop\" --project chromium",
     "test:debug": "cross-env NODE_OPTIONS=--no-warnings playwright test --debug",
     "test:ui": "cross-env NODE_OPTIONS=--no-warnings playwright test --ui",
-    "test:report": "cross-env NODE_OPTIONS=--no-warnings playwright show-report"
+    "test:report": "cross-env NODE_OPTIONS=--no-warnings playwright show-report",
+    "testFromGit": "npx playwright test tests/qetest/test-url-qe.spec.ts --project chromium"
   },
   "keywords": [],
   "author": "",
