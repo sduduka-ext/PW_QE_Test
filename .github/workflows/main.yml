@@ -26,12 +26,14 @@ on:
         - firefox
         #- all
       tags:
-        description: 'Test scenario tags' #example: smoke, regression, all
+        description: 'Test scenario tags' #example: smoke, regression,sanity all
         required: false
+        default: '@sanity'
         type: string
       testName:
         description: 'Run Test with name' #example: Link Shop, Stream
         required: false
+        default: 'Link Shop'
         type: string
       logLevel:
         description: 'Log level'
