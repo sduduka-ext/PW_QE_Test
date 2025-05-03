@@ -66,17 +66,16 @@ jobs:
     - name: To load cross env var package
       run: npm install --save-dev cross-env
       
-    - name: Set environment instance for run
-      run: $env:ENV='${{ github.event.inputs.ENV }}'
+    # - name: Set environment instance for run
+    #   run: $env:ENV='${{ github.event.inputs.ENV }}'
     - name: Run Playwright tests from package.json file mentioned
       run: |
         # npx playwright test tests/qetest/test-url-qe.spec.ts --project ${{ github.event.inputs.browser }} -g "${{ github.event.inputs.tags }}" -g "${{ github.event.inputs.testName }}" --headed
-        if["${{ github.event.inputs.tags }}"!=""]{
+        if["${{ github.event.inputs.testName }}"!=""]; then 
           npm run test_${{ github.event.inputs.browser }}_${{ github.event.inputs.tags }}_${{ github.event.inputs.testName }}_${{ github.event.inputs.ENV }}
-        }else{
+        else
           npm run test_${{ github.event.inputs.browser }}_${{ github.event.inputs.tags }}_${{ github.event.inputs.ENV }}
-        }
-        
+        fi
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
