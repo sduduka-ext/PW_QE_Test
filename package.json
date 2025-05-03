@@ -10,7 +10,10 @@
     "test:debug": "cross-env NODE_OPTIONS=--no-warnings playwright test --debug",
     "test:ui": "cross-env NODE_OPTIONS=--no-warnings playwright test --ui",
     "test:report": "cross-env NODE_OPTIONS=--no-warnings playwright show-report",
-    "test_stage_chromium_@sanity_testName": "cross-env ENV=stage playwright test tests/qetest/test-url-qe.spec.ts"
+    "test_chromium_@sanity_stage": "cross-env ENV=stage playwright test tests/qetest/test-url-qe.spec.ts --headed --project chromium --grep \"@sanity\"",
+    "test_chromium_stage": "cross-env ENV=stage playwright test tests/qetest/test-url-qe.spec.ts --headed --project chromium",
+    "test_chromium_@sanity_qa": "cross-env ENV=qa playwright test tests/qetest/test-url-qe.spec.ts --headed --project chromium --grep \"@sanity\"",
+    "test_chromium_qa": "cross-env ENV=qa playwright test tests/qetest/test-url-qe.spec.ts --headed --project chromium"
   },
   "keywords": [],
   "author": "",

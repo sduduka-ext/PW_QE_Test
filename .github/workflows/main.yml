@@ -26,7 +26,7 @@ on:
         - firefox
         #- all
       tags:
-        description: 'Test scenario tags' #example: smoke, regression,sanity all
+        description: 'Test scenario tags' #example: smoke, regression,sanity, all
         required: false
         default: '@sanity'
         type: string
@@ -66,7 +66,13 @@ jobs:
       run: $env:ENV='${{ github.event.inputs.ENV }}'
     - name: Run Playwright tests from package.json file mentioned
       run: |
-        npx playwright test tests/qetest/test-url-qe.spec.ts --project ${{ github.event.inputs.browser }} -g "${{ github.event.inputs.tags }}" -g "${{ github.event.inputs.testName }}" --headed
+        # npx playwright test tests/qetest/test-url-qe.spec.ts --project ${{ github.event.inputs.browser }} -g "${{ github.event.inputs.tags }}" -g "${{ github.event.inputs.testName }}" --headed
+        if(${{ github.event.inputs.tags }}!=''){
+          npm run test_${{ github.event.inputs.browser }}_${{ github.event.inputs.tags }}_${{ github.event.inputs.testName }}_${{ github.event.inputs.ENV }}
+        }else{
+          npm run test_${{ github.event.inputs.browser }}_${{ github.event.inputs.tags }}_${{ github.event.inputs.ENV }}
+        }
+        
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
