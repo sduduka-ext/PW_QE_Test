@@ -28,17 +28,21 @@ on:
       tags:
         description: 'Test scenario tags' #example: smoke, regression,sanity, all
         required: false
-        default: '@sanity'
-        type: string
+        default: ''
+        type: choice
+        options:
+        - sanity
+        - smoke
+        - criticalregression
       testName:
         description: 'Run Test with name' #example: Link Shop, Stream
         required: false
-        default: 'Link Shop'
+        default: ''
         type: string
       logLevel:
         description: 'Log level'
         required: true
-        default: 'warning'
+        default: ''
         type: choice
         options:
         - info
@@ -67,7 +71,7 @@ jobs:
     - name: Run Playwright tests from package.json file mentioned
       run: |
         # npx playwright test tests/qetest/test-url-qe.spec.ts --project ${{ github.event.inputs.browser }} -g "${{ github.event.inputs.tags }}" -g "${{ github.event.inputs.testName }}" --headed
-        if(${{ github.event.inputs.tags }}!=''){
+        if["${{ github.event.inputs.tags }}"!=""]{
           npm run test_${{ github.event.inputs.browser }}_${{ github.event.inputs.tags }}_${{ github.event.inputs.testName }}_${{ github.event.inputs.ENV }}
         }else{
           npm run test_${{ github.event.inputs.browser }}_${{ github.event.inputs.tags }}_${{ github.event.inputs.ENV }}
