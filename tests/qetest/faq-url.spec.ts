@@ -10,7 +10,7 @@ test.describe('Check URL and its links', async () => {
     const faqPageInstance = new faqPage(page);
     await faqPageInstance.navigateURL(process.env.FAQ_URL || 'https://default-url.com');
     console.log(process.env.ENV + " >>>> Navigate - " + process.env.FAQ_URL + " with locale >>>" + process.env.LOCALE);
-    await expect(page).toHaveURL(/.*" + process.env.ENV + "\.faq?\.bodi.*/);
+    await expect(page).toHaveURL(/.*"+ process.env.ENV +"\.faq?\.bodi.*/);
     await expect(page).toHaveTitle(/BODI/);
     await page.getByText('Welcome to BODi Support').isVisible();
     await faqPageInstance.verifysiteerror();
