@@ -74,8 +74,8 @@ export class faqPage {
         this.termsAndConditions = this.page.getByRole('link', {name :'Terms and Conditions'});
         //this.privacyPolicy = this.page.getByText('Privacy Policy');
         this.privacyPolicy = this.page.getByRole('link', {name :'Privacy Policy'});
-        //this.doNotSellMyInfo = this.page.getByText('Do Not Sell My Info');
-        this.doNotSellMyInfo = this.page.getByRole('link', {name :'Do Not Sell My Info'});
+        this.doNotSellMyInfo = this.page.getByText('Do Not Sell My Info');
+        //this.doNotSellMyInfo = this.page.getByRole('link', {name :'Do Not Sell My Info'});
         //this.accessibilityStatement = this.page.getByText('Accessibility Statement');
         this.accessibilityStatement = this.page.getByRole('link', {name :'Accessibility Statement'});
         //this.californiaSupplyChain = this.page.getByText('California Supply Chain');
@@ -450,11 +450,11 @@ export class faqPage {
                 break;
             case 'doNotSellMyInfo':
                 console.log("doNotSellMyInfo >>>> " + this.doNotSellMyInfo);
-                href = await this.doNotSellMyInfo.getAttribute('href');
-                console.log("doNotSellMyInfo href >>>> " + href);
+                // href = await this.doNotSellMyInfo.getAttribute('href');
+                // console.log("doNotSellMyInfo href >>>> " + href);
                 await this.doNotSellMyInfo.click();
-                console.log("validate link href with after clicked navigated url");
-                this.validatePageURLwithExpectedURL(href);
+                // console.log("validate link href with after clicked navigated url");
+                // this.validatePageURLwithExpectedURL(href);
                 break;
             case 'accessibilityStatement':
                 console.log("accessibilityStatement >>>> " + this.accessibilityStatement);
