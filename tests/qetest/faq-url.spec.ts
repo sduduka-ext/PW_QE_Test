@@ -16,8 +16,17 @@ test.describe('Check URL and its links', async () => {
         await expect(page).toHaveTitle(/BODI/);
         await page.getByText('Welcome to BODi Support').isVisible();
         await faqPageInstance.verifySiteError();
-    })
+        if(await page.getByRole('img', { name: 'Close this dialog' }).isVisible()){
+        console.log("before Clicking on the cookie dialog");
+        await page.getByRole('img', { name: 'Close this dialog' }).click();
 
+        //await page.getByRole('button', { name: 'Close this dialog' }).click();
+        await faqPageInstance.waitPagePromise(5000);
+        console.log("after Clicking on the cookie dialog");
+        }else{
+            console.log("Cookie dialog box is not visible");
+        }  
+    });
 
     test('Link Shop', { tag: "@sanity", }, async ({ page }) => {
 
@@ -228,21 +237,18 @@ test.describe('Check URL and its links', async () => {
 
     test('Link Clickchatwithbodi', { tag: "@sanity", }, async ({ page }) => {
         const faqPageInstance = new faqPage(page);
-        await faqPageInstance.waitPagePromise(5000);
-        await page.getByRole('button', { name: 'Close this dialog' }).click();
         await faqPageInstance.clickLinkAndValidate("chatWithBodi");
         //await faqPageInstance.clickchatwithbodi();
         await faqPageInstance.waitPagePromise(5000);
         await faqPageInstance.verifySiteError();
         // await expect(page).toHaveTitle(/BODi Signin/);
-
         await faqPageInstance.navigateGoBack();
     });
 
     test('Link Clicksignintotext', { tag: "@sanity", }, async ({ page }) => {
         const faqPageInstance = new faqPage(page);
-        await faqPageInstance.waitPagePromise(5000);
-        await page.getByRole('button', { name: 'Close this dialog' }).click();
+        // await faqPageInstance.waitPagePromise(5000);
+        // await page.getByRole('button', { name: 'Close this dialog' }).click();
         await faqPageInstance.clickLinkAndValidate("signInToText");
         //await faqPageInstance.clicksignintotext();
         await faqPageInstance.waitPagePromise(5000);
@@ -254,8 +260,8 @@ test.describe('Check URL and its links', async () => {
 
     test('Link Clicktermsandconditions', { tag: "@sanity", }, async ({ page }) => {
         const faqPageInstance = new faqPage(page);
-        await faqPageInstance.waitPagePromise(5000);
-        await page.getByRole('button', { name: 'Close this dialog' }).click();
+        // await faqPageInstance.waitPagePromise(5000);
+        // await page.getByRole('button', { name: 'Close this dialog' }).click();
         await faqPageInstance.clickLinkAndValidate("termsAndConditions");
         //await faqPageInstance.clicktermsandconditions();
         await faqPageInstance.waitPagePromise(5000);
@@ -267,9 +273,13 @@ test.describe('Check URL and its links', async () => {
 
     test('Link Clickprivacypolicy', { tag: "@sanity", }, async ({ page }) => {
         const faqPageInstance = new faqPage(page);
-        await faqPageInstance.waitPagePromise(10000);
-        await page.getByRole('button', { name: 'Close this dialog' }).click();
-        await faqPageInstance.waitPagePromise(10000);
+        // await faqPageInstance.waitPagePromise(5000);
+        // console.log("before Clicking on the cookie dialog");
+        // await page.getByRole('img', { name: 'Close this dialog' }).click();
+
+        // //await page.getByRole('button', { name: 'Close this dialog' }).click();
+        // await faqPageInstance.waitPagePromise(5000);
+        // console.log("after Clicking on the cookie dialog");
         // await page.pause();
         // await faqPageInstance.clickprivacypolicy();
         await faqPageInstance.clickLinkAndValidate("privacyPolicy");
@@ -282,8 +292,8 @@ test.describe('Check URL and its links', async () => {
 
     test('Link Clickdonotsellmyinfo', { tag: "@sanity", }, async ({ page }) => {
         const faqPageInstance = new faqPage(page);
-        await faqPageInstance.waitPagePromise(5000);
-        await page.getByRole('button', { name: 'Close this dialog' }).click();
+        // await faqPageInstance.waitPagePromise(5000);
+        // await page.getByRole('button', { name: 'Close this dialog' }).click();
         await faqPageInstance.clickLinkAndValidate("doNotSellMyInfo");
         //await faqPageInstance.clickdonotsellmyinfo();
         await faqPageInstance.waitPagePromise(5000);
@@ -295,8 +305,8 @@ test.describe('Check URL and its links', async () => {
 
     test('Link Clickaccessibilitystatement', { tag: "@sanity", }, async ({ page }) => {
         const faqPageInstance = new faqPage(page);
-        await faqPageInstance.waitPagePromise(5000);
-        await page.getByRole('button', { name: 'Close this dialog' }).click();
+        // await faqPageInstance.waitPagePromise(5000);
+        // await page.getByRole('button', { name: 'Close this dialog' }).click();
         await faqPageInstance.clickLinkAndValidate("accessibilityStatement");
         //await faqPageInstance.clickaccessibilitystatement();
         await faqPageInstance.waitPagePromise(5000);
@@ -308,8 +318,9 @@ test.describe('Check URL and its links', async () => {
 
     test('Link Clickcaliforniasupplychain', { tag: "@sanity", }, async ({ page }) => {
         const faqPageInstance = new faqPage(page);
-        await faqPageInstance.waitPagePromise(5000);
-        await page.getByRole('button', { name: 'Close this dialog' }).click();
+        // await faqPageInstance.waitPagePromise(5000);
+        // await page.getByRole('img', { name: 'Close this dialog' }).click();
+        // await faqPageInstance.waitPagePromise(5000);
         await faqPageInstance.clickLinkAndValidate("californiaSupplyChain");
         //await faqPageInstance.clickcaliforniasupplychain();
         await faqPageInstance.waitPagePromise(5000);
@@ -321,8 +332,8 @@ test.describe('Check URL and its links', async () => {
 
     test('Link Clickconsumerhealthdatapolicy', { tag: "@sanity", }, async ({ page }) => {
         const faqPageInstance = new faqPage(page);
-        await faqPageInstance.waitPagePromise(5000);
-        await page.getByRole('button', { name: 'Close this dialog' }).click();
+        // await faqPageInstance.waitPagePromise(5000);
+        // await page.getByRole('button', { name: 'Close this dialog' }).click();
         await faqPageInstance.clickLinkAndValidate("consumerHealthDataPolicy");
         //await faqPageInstance.clickconsumerhealthdatapolicy();
         await faqPageInstance.waitPagePromise(5000);

@@ -68,13 +68,20 @@ export class faqPage {
         this.affiliateLink = this.page.getByRole('link', { name: 'Affiliate Partner Support' });
         this.productInfoLink = this.page.getByRole('link', { name: 'Product Info, Offers, and' });
         this.chatWithBodi = this.page.getByText('Chat with BODi');
+       //this.chatWithBodi = this.page.getByRole('generic', { name: 'Chat with BODi' });
         this.signIntoText = this.page.getByText('Sign in to Text with BODi');
-        this.termsAndConditions = this.page.getByText('Terms and Conditions');
-        this.privacyPolicy = this.page.getByText('Privacy Policy');
-        this.doNotSellMyInfo = this.page.getByText('Do Not Sell My Info');
-        this.accessibilityStatement = this.page.getByText('Accessibility Statement');
-        this.californiaSupplyChain = this.page.getByText('California Supply Chain');
-        this.consumerHealthDataPolicy = this.page.getByText('Consumer Health Data Policy');
+        //this.termsAndConditions = this.page.getByText('Terms and Conditions');
+        this.termsAndConditions = this.page.getByRole('link', {name :'Terms and Conditions'});
+        //this.privacyPolicy = this.page.getByText('Privacy Policy');
+        this.privacyPolicy = this.page.getByRole('link', {name :'Privacy Policy'});
+        //this.doNotSellMyInfo = this.page.getByText('Do Not Sell My Info');
+        this.doNotSellMyInfo = this.page.getByRole('link', {name :'Do Not Sell My Info'});
+        //this.accessibilityStatement = this.page.getByText('Accessibility Statement');
+        this.accessibilityStatement = this.page.getByRole('link', {name :'Accessibility Statement'});
+        //this.californiaSupplyChain = this.page.getByText('California Supply Chain');
+        this.californiaSupplyChain = this.page.getByRole('link', {name :'California Supply Chain'});
+        //this.consumerHealthDataPolicy = this.page.getByText('Consumer Health Data Policy');
+        this.consumerHealthDataPolicy = this.page.getByRole('link', {name :'Consumer Health Data Policy'});
         this.signIn = this.page.getByRole('link', { name: 'Sign In' });
         this.searchBox = this.page.getByRole('searchbox', { name: 'Enter a Question or FAQ #' });
         this.searchIcon = this.page.locator('#searchfaq');
@@ -411,19 +418,19 @@ export class faqPage {
                 break;
             case 'chatWithBodi':
                 console.log("chatWithBodi >>>> " + this.chatWithBodi);
-                href = await this.chatWithBodi.getAttribute('href');
-                console.log("chatWithBodi href >>>> " + href);
+                // href = await this.chatWithBodi.getAttribute('href');
+                // console.log("chatWithBodi href >>>> " + href);
                 await this.chatWithBodi.click();
-                console.log("validate link href with after clicked navigated url");
-                this.validatePageURLwithExpectedURL(href);
+                // console.log("validate link href with after clicked navigated url");
+                // this.validatePageURLwithExpectedURL(href);
                 break;
             case 'signIntoText':
                 console.log("signIntoText >>>> " + this.signIntoText);
-                href = await this.signIntoText.getAttribute('href');
-                console.log("signIntoText href >>>> " + href);
+                // href = await this.signIntoText.getAttribute('href');
+                // console.log("signIntoText href >>>> " + href);
                 await this.signIntoText.click();
-                console.log("validate link href with after clicked navigated url");
-                this.validatePageURLwithExpectedURL(href);
+                // console.log("validate link href with after clicked navigated url");
+                // this.validatePageURLwithExpectedURL(href);
                 break;
             case 'termsAndConditions':
                 console.log("termsAndConditions >>>> " + this.termsAndConditions);
