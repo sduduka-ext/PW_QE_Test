@@ -1,4 +1,6 @@
 import { test, expect, Page } from '@playwright/test';
+import { ENV } from '../utils/env';
+//import * as testData from '../src/test-data/global-nav-td.json';
 
 export class faqPage {
 
@@ -68,20 +70,20 @@ export class faqPage {
         this.affiliateLink = this.page.getByRole('link', { name: 'Affiliate Partner Support' });
         this.productInfoLink = this.page.getByRole('link', { name: 'Product Info, Offers, and' });
         this.chatWithBodi = this.page.getByText('Chat with BODi');
-       //this.chatWithBodi = this.page.getByRole('generic', { name: 'Chat with BODi' });
+        //this.chatWithBodi = this.page.getByRole('generic', { name: 'Chat with BODi' });
         this.signIntoText = this.page.getByText('Sign in to Text with BODi');
         //this.termsAndConditions = this.page.getByText('Terms and Conditions');
-        this.termsAndConditions = this.page.getByRole('link', {name :'Terms and Conditions'});
+        this.termsAndConditions = this.page.getByRole('link', { name: 'Terms and Conditions' });
         //this.privacyPolicy = this.page.getByText('Privacy Policy');
-        this.privacyPolicy = this.page.getByRole('link', {name :'Privacy Policy'});
+        this.privacyPolicy = this.page.getByRole('link', { name: 'Privacy Policy' });
         this.doNotSellMyInfo = this.page.getByText('Do Not Sell My Info');
         //this.doNotSellMyInfo = this.page.getByRole('link', {name :'Do Not Sell My Info'});
         //this.accessibilityStatement = this.page.getByText('Accessibility Statement');
-        this.accessibilityStatement = this.page.getByRole('link', {name :'Accessibility Statement'});
+        this.accessibilityStatement = this.page.getByRole('link', { name: 'Accessibility Statement' });
         //this.californiaSupplyChain = this.page.getByText('California Supply Chain');
-        this.californiaSupplyChain = this.page.getByRole('link', {name :'California Supply Chain'});
+        this.californiaSupplyChain = this.page.getByRole('link', { name: 'California Supply Chain' });
         //this.consumerHealthDataPolicy = this.page.getByText('Consumer Health Data Policy');
-        this.consumerHealthDataPolicy = this.page.getByRole('link', {name :'Consumer Health Data Policy'});
+        this.consumerHealthDataPolicy = this.page.getByRole('link', { name: 'Consumer Health Data Policy' });
         this.signIn = this.page.getByRole('link', { name: 'Sign In' });
         this.searchBox = this.page.getByRole('searchbox', { name: 'Enter a Question or FAQ #' });
         this.searchIcon = this.page.locator('#searchfaq');
@@ -90,14 +92,21 @@ export class faqPage {
     async navigateURL(url: string) {
         await this.page.goto(url);
     }
-    async validatePageURLwithExpectedURL(expectedURL: string) {
-        const currentURL = this.page.url();
-        console.log("Current URL: " + currentURL);
-        console.log("Expected URL: " + expectedURL);
-        expect.soft(currentURL).toContain(expectedURL);
-        // Get the current URL
-        // console.log("URL Navigated > " + process.env.FAQ_URL + " and after navigation page url >>>" + currentUrl);
-        // expect.soft(currentURL).toBe(process.env.FAQ_URL);
+    async validatePageURLwithExpectedURL(expectedURL: string, linkName?: string) {
+        let currentURL = this.page.url();
+        if (linkName != undefined) {
+            console.log(linkName + " Current URL: " + currentURL);
+            console.log(linkName + " Expected URL: " + expectedURL);
+        } else {
+            console.log("Current URL: " + currentURL);
+            console.log("Expected URL: " + expectedURL);
+        }
+        if (currentURL != expectedURL) {
+            console.assert("Expected URL: " + expectedURL + " but navigated to " + currentURL);
+            
+        } else {
+            expect(currentURL).toContain(expectedURL);
+        }
     }
     async acceptCookies() {
         await this.cookieButton.click();
@@ -256,6 +265,14 @@ export class faqPage {
     async clickLinkAndValidate(linkName: string) {
         let href = "";
         switch (linkName) {
+            case 'shopLink':
+                console.log("shopLink >>>> " + this.shopLink);
+                href = await this.shopLink.getAttribute('href');
+                console.log("shopLink href >>>> " + href);
+                await this.shopLink.click();
+                console.log("validate link href with after clicked navigated url");
+                this.validatePageURLwithExpectedURL(href);
+                break;
             case 'streamLink':
                 console.log("streamLink >>>> " + this.streamLink);
                 href = await this.streamLink.getAttribute('href');
@@ -264,11 +281,268 @@ export class faqPage {
                 console.log("validate link href with after clicked navigated url");
                 this.validatePageURLwithExpectedURL(href);
                 break;
+
+            case 'becomeAnAffiliateLink':
+                console.log("becomeAnAffiliateLink >>>> " + this.clickLinkBecomeAnAffiliate);
+                href = await this.becomeAnAffiliateLink.getAttribute('href');
+                console.log("becomeAnAffiliateLink href >>>> " + href);
+                await this.becomeAnAffiliateLink.click();
+                console.log("validate link href with after clicked navigated url");
+                this.validatePageURLwithExpectedURL(href);
+                break;
+            case 'manageNutritionSubscriptionLink':
+                console.log("manageNutritionSubscriptionLink >>>> " + this.manageNutritionSubscriptionLink);
+                href = await this.manageNutritionSubscriptionLink.getAttribute('href');
+                console.log("manageNutritionSubscriptionLink href >>>> " + href);
+                await this.manageNutritionSubscriptionLink.click();
+                console.log("validate link href with after clicked navigated url");
+                this.validatePageURLwithExpectedURL(href);
+                break;
+            case 'manageDigitalMembershipLink':
+                console.log("manageDigitalMembershipLink >>>> " + this.manageDigitalMembershipLink);
+                href = await this.manageDigitalMembershipLink.getAttribute('href');
+                console.log("manageDigitalMembershipLink href >>>> " + href);
+                await this.manageDigitalMembershipLink.click();
+                console.log("validate link href with after clicked navigated url");
+                this.validatePageURLwithExpectedURL(href);
+                break;
+            case 'orderStatusLink':
+                console.log("orderStatusLink >>>> " + this.orderStatusLink);
+                href = await this.orderStatusLink.getAttribute('href');
+                console.log("orderStatusLink href >>>> " + href);
+                await this.orderStatusLink.click();
+                console.log("validate link href with after clicked navigated url");
+                this.validatePageURLwithExpectedURL(href);
+                break;
+            case 'myOrdersLink':
+                console.log("clickMyOrdersLink >>>> " + this.myOrdersLink);
+                href = await this.myOrdersLink.getAttribute('href');
+                console.log("myOrdersLink href >>>> " + href);
+                await this.myOrdersLink.click();
+                console.log("validate link href with after clicked navigated url");
+                this.validatePageURLwithExpectedURL(href);
+                break;
+            case 'clickSignIn':
+                console.log("clickSignIn >>>> " + this.signIn);
+                href = await this.signIn.getAttribute('href');
+                console.log("clickSignIn href >>>> " + href);
+                await this.signIn.click();
+                console.log("validate link href with after clicked navigated url");
+                this.validatePageURLwithExpectedURL(href);
+                break;
+            case 'clickReturnAndExchangeLink':
+                console.log("returnandexchangeLink >>>> " + this.returnAndExchangeLink);
+                href = await this.returnAndExchangeLink.getAttribute('href');
+                console.log("returnandexchangeLink href >>>> " + href);
+                await this.returnAndExchangeLink.click();
+                console.log("validate link href with after clicked navigated url");
+                this.validatePageURLwithExpectedURL(href);
+                break;
+            case 'updateAccountLink':
+                console.log("updateAccountLink >>>> " + this.updateAccountLink);
+                href = await this.updateAccountLink.getAttribute('href');
+                console.log("updateAccountLink href >>>> " + href);
+                await this.updateAccountLink.click();
+                console.log("validate link href with after clicked navigated url");
+                this.validatePageURLwithExpectedURL(href);
+                break;
+            case 'updatePaymentMethodLink':
+                console.log("updatePaymentMethodLink >>>> " + this.updatePaymentMethodLink);
+                href = await this.updatePaymentMethodLink.getAttribute('href');
+                console.log("updatePaymentMethodLink href >>>> " + href);
+                await this.updatePaymentMethodLink.click();
+                console.log("validate link href with after clicked navigated url");
+                this.validatePageURLwithExpectedURL(href);
+                break;
+            case 'partnerFormsLink':
+                console.log("partnerFormsLink >>>> " + this.partnerFormsLink);
+                href = await this.partnerFormsLink.getAttribute('href');
+                console.log("partnerFormsLink href >>>> " + href);
+                await this.partnerFormsLink.click();
+                console.log("validate link href with after clicked navigated url");
+                this.validatePageURLwithExpectedURL(href);
+                break;
+            case 'myShakeologyLink':
+                console.log("myShakeologyLink >>>> " + this.myShakeologyLink);
+                href = await this.myShakeologyLink.getAttribute('href');
+                console.log("myShakeologyLink href >>>> " + href);
+                await this.myShakeologyLink.click();
+                console.log("validate link href with after clicked navigated url");
+                this.validatePageURLwithExpectedURL(href);
+                break;
+            case 'bodiLink':
+                console.log("bodiLink >>>> " + this.bodiLink);
+                href = await this.bodiLink.getAttribute('href');
+                console.log("bodiLink href >>>> " + href);
+                await this.bodiLink.click();
+                console.log("validate link href with after clicked navigated url");
+                this.validatePageURLwithExpectedURL(href);
+                break;
+            case 'bikeLink':
+                console.log("bikeLink >>>> " + this.bikeLink);
+                href = await this.bikeLink.getAttribute('href');
+                console.log("bikeLink href >>>> " + href);
+                await this.bikeLink.click();
+                console.log("validate link href with after clicked navigated url");
+                this.validatePageURLwithExpectedURL(href);
+                break;
+            case 'allOrdersLink':
+                console.log("allOrdersLink >>>> " + this.allOrdersLink);
+                href = await this.allOrdersLink.getAttribute('href');
+                console.log("allOrdersLink href >>>> " + href);
+                await this.allOrdersLink.click();
+                console.log("validate link href with after clicked navigated url");
+                this.validatePageURLwithExpectedURL(href);
+                break;
+            case 'myAccountLink':
+                console.log("myAccountLink >>>> " + this.myAccountLink);
+                href = await this.myAccountLink.getAttribute('href');
+                console.log("myAccountLink href >>>> " + href);
+                await this.myAccountLink.click();
+                console.log("validate link href with after clicked navigated url");
+                this.validatePageURLwithExpectedURL(href);
+                break;
+            case 'technicalSupportLink':
+                console.log("technicalSupportLink >>>> " + this.technicalSupportLink);
+                href = await this.technicalSupportLink.getAttribute('href');
+                console.log("technicalSupportLink href >>>> " + href);
+                await this.technicalSupportLink.click();
+                console.log("validate link href with after clicked navigated url");
+                this.validatePageURLwithExpectedURL(href);
+                break;
+            case 'affiliateLink':
+                console.log("affiliateLink >>>> " + this.affiliateLink);
+                href = await this.affiliateLink.getAttribute('href');
+                console.log("affiliateLink href >>>> " + href);
+                await this.affiliateLink.click();
+                console.log("validate link href with after clicked navigated url");
+                this.validatePageURLwithExpectedURL(href);
+                break;
+            case 'productInfoLink':
+                console.log("productInfoLink >>>> " + this.productInfoLink);
+                href = await this.productInfoLink.getAttribute('href');
+                console.log("productInfoLink href >>>> " + href);
+                await this.productInfoLink.click();
+                console.log("validate link href with after clicked navigated url");
+                this.validatePageURLwithExpectedURL(href);
+                break;
+            case 'chatWithBodi':
+                console.log("chatWithBodi >>>> " + this.chatWithBodi);
+                // href = await this.chatWithBodi.getAttribute('href');
+                // console.log("chatWithBodi href >>>> " + href);
+                await this.chatWithBodi.click();
+                // console.log("validate link href with after clicked navigated url");
+                // this.validatePageURLwithExpectedURL(href);
+                break;
+            case 'signIntoText':
+                console.log("signIntoText >>>> " + this.signIntoText);
+                // href = await this.signIntoText.getAttribute('href');
+                // console.log("signIntoText href >>>> " + href);
+                await this.signIntoText.click();
+                // console.log("validate link href with after clicked navigated url");
+                // this.validatePageURLwithExpectedURL(href);
+                break;
+            case 'termsAndConditions':
+                console.log("termsAndConditions >>>> " + this.termsAndConditions);
+                href = await this.termsAndConditions.getAttribute('href');
+                console.log("termsAndConditions href >>>> " + href);
+                await this.termsAndConditions.click();
+                console.log("validate link href with after clicked navigated url");
+                this.validatePageURLwithExpectedURL(href);
+                break;
+            case 'privacyPolicy':
+                console.log("privacyPolicy >>>> " + this.privacyPolicy);
+                href = await this.privacyPolicy.getAttribute('href');
+                console.log("privacyPolicy href >>>> " + href);
+                await this.privacyPolicy.click();
+                console.log("validate link href with after clicked navigated url");
+                this.validatePageURLwithExpectedURL(href);
+                break;
+            case 'doNotSellMyInfo':
+                console.log("doNotSellMyInfo >>>> " + this.doNotSellMyInfo);
+                // href = await this.doNotSellMyInfo.getAttribute('href');
+                // console.log("doNotSellMyInfo href >>>> " + href);
+                await this.doNotSellMyInfo.click();
+                // console.log("validate link href with after clicked navigated url");
+                // this.validatePageURLwithExpectedURL(href);
+                break;
+            case 'accessibilityStatement':
+                console.log("accessibilityStatement >>>> " + this.accessibilityStatement);
+                href = await this.accessibilityStatement.getAttribute('href');
+                console.log("accessibilityStatement href >>>> " + href);
+                await this.accessibilityStatement.click();
+
+                console.log("validate link href with after clicked navigated url");
+                this.validatePageURLwithExpectedURL(href);
+                break;
+            case 'californiaSupplyChain':
+                console.log("californiaSupplyChain >>>> " + this.californiaSupplyChain);
+                href = await this.californiaSupplyChain.getAttribute('href');
+                console.log("californiaSupplyChain href >>>> " + href);
+                await this.californiaSupplyChain.click();
+                console.log("validate link href with after clicked navigated url");
+                this.validatePageURLwithExpectedURL(href);
+                break;
+            case 'consumerHealthDataPolicy':
+                console.log("consumerHealthDataPolicy >>>> " + this.consumerHealthDataPolicy);
+                href = await this.consumerHealthDataPolicy.getAttribute('href');
+                console.log("consumerHealthDataPolicy href >>>> " + href);
+                await this.consumerHealthDataPolicy.click();
+                console.log("validate link href with after clicked navigated url");
+                this.validatePageURLwithExpectedURL(href);
+                break;
+            case 'searchBox':
+                console.log("searchBox >>>> " + this.searchBox);
+                href = await this.searchBox.getAttribute('href');
+                console.log("searchBox href >>>> " + href);
+                await this.searchBox.click();
+                console.log("validate link href with after clicked navigated url");
+                this.validatePageURLwithExpectedURL(href);
+                break;
+            case 'searchIcon':
+                console.log("searchIcon >>>> " + this.searchIcon);
+                href = await this.searchIcon.getAttribute('href');
+                console.log("searchIcon href >>>> " + href);
+                await this.searchIcon.click();
+                console.log("validate link href with after clicked navigated url");
+                this.validatePageURLwithExpectedURL(href);
+                break;
+            case 'searchInput':
+                console.log("searchInput >>>> " + this.searchInput);
+                href = await this.searchInput.getAttribute('href');
+                console.log("searchInput href >>>> " + href);
+                await this.searchInput.click();
+                console.log("validate link href with after clicked navigated url");
+                this.validatePageURLwithExpectedURL(href);
+                break;
+            case 'openSourceButton':
+                console.log("openSourceButton >>>> " + this.openSourceButton);
+                href = await this.openSourceButton.getAttribute('href');
+                console.log("openSourceButton href >>>> " + href);
+                await this.openSourceButton.click();
+                console.log("validate link href with after clicked navigated url");
+                this.validatePageURLwithExpectedURL(href);
+                break;
+            default:
+                console.log('Invalid link name');
+        }
+    }
+    async clickLink_ValidateURL(linkName: string, expectedURL: string) {
+        let href = "";
+        
+        switch (linkName) {
             case 'shopLink':
                 console.log("shopLink >>>> " + this.shopLink);
-                href = await this.shopLink.getAttribute('href');
-                console.log("shopLink href >>>> " + href);
+                console.log("shopLink url expected ::: " + expectedURL);
                 await this.shopLink.click();
+                console.log("validate link url after click");
+                this.validatePageURLwithExpectedURL(expectedURL, linkName);
+                break;
+            case 'streamLink':
+                console.log("streamLink >>>> " + this.streamLink);
+                href = await this.streamLink.getAttribute('href');
+                console.log("streamLink href >>>> " + href);
+                await this.streamLink.click();
                 console.log("validate link href with after clicked navigated url");
                 this.validatePageURLwithExpectedURL(href);
                 break;

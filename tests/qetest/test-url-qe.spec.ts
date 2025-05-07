@@ -2,7 +2,7 @@
 import { test, expect } from '@playwright/test';
 //const { test, expect } = require('@playwright/test');
 //const fs = require('fs');
-import { faqPage } from '../../src/faqPage';
+import { faqPage } from "../../src/faqPage-globalNav";
 
 import { ENV } from "../../utils/env"; // Ensure the file exists at 'c:\QE_PW_Test\tests\utils\env.ts' or update the path accordingly
 test.describe('Check URL and its links', async () => {

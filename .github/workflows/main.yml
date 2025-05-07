@@ -15,6 +15,14 @@ on:
         options:
         - stage
         - qa
+      Locale:
+        description: 'Environment to run tests against locale'
+        type: choice
+        default: 'enUS'
+        required: true
+        options:
+        - enUS
+        - enCA
       browser :
         description: 'Test scenario tags'
         required: true
@@ -71,8 +79,8 @@ jobs:
     - name: Run Playwright tests from package.json file mentioned
       # if: ${{ github.event.inputs.testName != '' }}
       run: |
-        echo "Running tests with the following parameters: ${{ github.event.inputs.browser }}_${{ github.event.inputs.tags }}_${{ github.event.inputs.ENV }}"
-        npm run test_${{ github.event.inputs.browser }}_${{ github.event.inputs.tags }}_${{ github.event.inputs.ENV }}
+        echo "Running tests with the following parameters: ${{ github.event.inputs.browser }}_${{ github.event.inputs.tags }}_${{ github.event.inputs.ENV }}_${{ github.event.inputs.Locale }}"
+        npm run test_${{ github.event.inputs.browser }}_${{ github.event.inputs.tags }}_${{ github.event.inputs.ENV }}_${{ github.event.inputs.Locale }}
         
         
     - uses: actions/upload-artifact@v4

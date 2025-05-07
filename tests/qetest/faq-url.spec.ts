@@ -1,10 +1,21 @@
 // Inlcude playwright module
 import { test, expect } from '@playwright/test';
-import { faqPage } from '../../src/faqPage';
+import { faqPage } from "../../src/faqPage-globalNav";
 import { ENV } from "../../utils/env"; // Ensure the file exists at 'c:\QE_PW_Test\tests\utils\env.ts' or update the path accordingly
-import { link, linkSync } from 'fs';
-
+//import * as testData from '../../src/test-data/globalNav_td_stage_enUS.json';
 test.describe('Check URL and its links', async () => {
+// Get the environment
+const environment = process.env.ENV || 'qa'; // Default to 'qa'
+console.log("environment "+environment);
+// Get the locale
+const locale = process.env.LOCALE || 'enUS'; // Default to 'en-US'
+
+// Construct the path to the data file
+//const dataPath = `C:\\Users\\adm-sduduka-ext\\Documents\\PlayWright\\PW_QE_Test\\PW_QE_Test\\src\\test-data\\globalNav_td_stage_enUS.json`;
+const dataPath = `../../src/test-data/globalNav_td_${environment}_enUS.json`;
+
+// Load the data
+const linkData = require(dataPath);
 
     test.beforeEach(async ({ page }) => {
 
@@ -31,7 +42,8 @@ test.describe('Check URL and its links', async () => {
     test('Link Shop', { tag: "@sanity", }, async ({ page }) => {
 
         const faqPageInstance = new faqPage(page);
-        await faqPageInstance.clickLinkAndValidate("linkShop");
+        console.log("verify "+test.name+" with TD expected url >> "+linkData.Shop_Link_URL);
+        await faqPageInstance.clickLink_ValidateURL("shopLink",linkData.Shop_Link_URL);
         await faqPageInstance.verifySiteError();
         await faqPageInstance.navigateGoBack();
 
