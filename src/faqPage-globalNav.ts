@@ -102,8 +102,8 @@ export class faqPage {
             console.log("Expected URL: " + expectedURL);
         }
         if (currentURL != expectedURL) {
-            console.assert("Expected URL: " + expectedURL + " but navigated to " + currentURL);
-            
+            console.error("Expected URL: " + expectedURL + " but navigated to " + currentURL);
+           
         } else {
             expect(currentURL).toContain(expectedURL);
         }
