@@ -9,10 +9,10 @@ const environment = process.env.ENV || 'qa'; // Default to 'qa'
 console.log("environment "+environment);
 // Get the locale
 const locale = process.env.LOCALE || 'enUS'; // Default to 'en-US'
-
+console.log("locale "+environment);
 // Construct the path to the data file
 //const dataPath = `C:\\Users\\adm-sduduka-ext\\Documents\\PlayWright\\PW_QE_Test\\PW_QE_Test\\src\\test-data\\globalNav_td_stage_enUS.json`;
-const dataPath = `../../src/test-data/globalNav_td_${environment}_enUS.json`;
+const dataPath = `../../src/test-data/globalNav_td_${environment}_${locale}.json`;
 
 // Load the data
 const linkData = require(dataPath);
