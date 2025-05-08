@@ -69,7 +69,7 @@ test.describe('Check URL and its links', async () => {
         await faqPageInstance.verifySiteError();
     });
 
-    test('Link MyOrdersLink', { tag: "@sanity", }, async ({ page }) => {
+    test('Link My Orders', { tag: "@sanity", }, async ({ page }) => {
         const faqPageInstance = new faqPage(page);
         await faqPageInstance.clickLink_ValidateURL("myOrdersLink", linkData.MyOrders_Link_URL);
         await expect(page).toHaveTitle(/BODi Signin/);

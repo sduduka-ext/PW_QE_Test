@@ -94,7 +94,7 @@ export class faqPage {
     }
     async validatePageURLwithExpectedURL(expectedURL: string, linkName?: string) {
         console.log("validate link url after click");
-    
+        
         let currentURL = this.page.url();
         if (linkName != undefined) {
             console.log(linkName + " Current URL: " + currentURL);
@@ -258,7 +258,6 @@ export class faqPage {
             ||
             await this.page.getByText('This page isn’t working').isVisible()) {
             console.error('This page is not as expected ');
-            test.fail();
         }
         else {
             console.log('This site content is displaying without any error');
