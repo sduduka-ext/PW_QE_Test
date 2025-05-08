@@ -1,5 +1,5 @@
 #how to run script in github playwright script
-name: Playwright Tests
+name: Faq URL Test
 #on: [workflow_dispatch]
   # push:
   #   branches: [ main ]
@@ -9,14 +9,14 @@ on:
   workflow_dispatch:
     inputs:
       ENV:
-        description: 'Environment to run tests against'
+        description: 'Environment' #'Environment to run tests against'
         type: choice
         required: true
         options:
         - stage
         - qa
       LOCALE:
-        description: 'Environment to run tests against locale'
+        description: 'Locale' #'Environment to run tests against locale'
         type: choice
         default: 'enUS'
         required: true
@@ -24,7 +24,7 @@ on:
         - enUS
         - enCA
       browser :
-        description: 'Test scenario tags'
+        description: 'Browser' #'Test scenario tags'
         required: true
         default: 'chromium'
         type: choice
