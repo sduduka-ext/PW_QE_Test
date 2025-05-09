@@ -94,7 +94,6 @@ export class faqPage {
     }
     async validatePageURLwithExpectedURL(expectedURL: string, linkName?: string) {
         console.log("validate link url after click");
-
         let currentURL = this.page.url();
         if (linkName != undefined) {
             console.log(linkName + " Current URL: " + currentURL);
@@ -108,7 +107,7 @@ export class faqPage {
             expect(currentURL).toEqual(expectedURL);
         }
         else {
-            expect(currentURL).toContain(expectedURL);
+            expect(currentURL).toEqual(expectedURL);
         }
     }
     async acceptCookies() {
@@ -536,6 +535,8 @@ export class faqPage {
             case 'shopLink':
                 console.log("shopLink >>>> " + this.shopLink);
                 console.log("shopLink url expected ::: " + expectedURL);
+                //console.log("shopLink url expected ::: " + await this.shopLink.getAttribute("href"));
+                //await expect.soft(this.shopLink.getAttribute("href").toHaveURL(expectedURL));
                 await this.shopLink.click();
                 this.validatePageURLwithExpectedURL(expectedURL, linkName);
                 break;
@@ -724,6 +725,7 @@ export class faqPage {
                 console.log("searchInput >>>> " + this.searchInput);
                 console.log("searchInput url expected ::: " + expectedURL);
                 await this.searchInput.click();
+
                 this.validatePageURLwithExpectedURL(expectedURL, linkName);
                 break;
             case 'openSourceButton':
