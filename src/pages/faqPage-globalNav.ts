@@ -94,7 +94,7 @@ export class faqPage {
     }
     async validatePageURLwithExpectedURL(expectedURL: string, linkName?: string) {
         console.log("validate link url after click");
-        let currentURL = this.page.url();
+        const currentURL: string = await this.page.url();
         if (linkName != undefined) {
             console.log(linkName + " Current URL: " + currentURL);
             console.log(linkName + " Expected URL: " + expectedURL);
