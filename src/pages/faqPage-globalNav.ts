@@ -94,7 +94,7 @@ export class faqPage {
     }
     async validatePageURLwithExpectedURL(expectedURL: string, linkName?: string) {
         console.log("validate link url after click");
-        
+
         let currentURL = this.page.url();
         if (linkName != undefined) {
             console.log(linkName + " Current URL: " + currentURL);
@@ -105,8 +105,9 @@ export class faqPage {
         }
         if (currentURL != expectedURL) {
             console.error("Expected URL: " + expectedURL + " but navigated to " + currentURL);
-            expect(currentURL).toContain(expectedURL);
-        } else {
+            expect(currentURL).toEqual(expectedURL);
+        }
+        else {
             expect(currentURL).toContain(expectedURL);
         }
     }
@@ -284,7 +285,7 @@ export class faqPage {
                 break;
 
             case 'becomeAnAffiliateLink':
-                console.log("becomeAnAffiliateLink >>>> " + this.clickLinkBecomeAnAffiliate);
+                console.log("becomeAnAffiliateLink >>>> " + this.becomeAnAffiliateLink);
                 href = await this.becomeAnAffiliateLink.getAttribute('href');
                 console.log("becomeAnAffiliateLink href >>>> " + href);
                 await this.becomeAnAffiliateLink.click();
@@ -545,7 +546,7 @@ export class faqPage {
                 this.validatePageURLwithExpectedURL(expectedURL, linkName);
                 break;
             case 'becomeAnAffiliateLink':
-                console.log("becomeAnAffiliateLink >>>> " + this.clickLinkBecomeAnAffiliate);
+                console.log("becomeAnAffiliateLink >>>> " + this.becomeAnAffiliateLink);
                 console.log("becomeAnAffiliateLink url expected ::: " + expectedURL);
                 await this.becomeAnAffiliateLink.click();
                 this.validatePageURLwithExpectedURL(expectedURL, linkName);
