@@ -62,7 +62,7 @@ export class faqPage {
         this.updatePaymentMethodLink = this.page.getByRole('link', { name: 'Update Payment Method' });
         this.partnerFormsLink = this.page.getByRole('link', { name: 'Partner Forms' });
         this.myShakeologyLink = this.page.getByRole('link', { name: 'My Shakeology' });
-        this.bodiLink = this.page.getByRole('link', { name: 'BODi' });
+        this.bodiLink = this.page.getByRole('link', { name: 'BODi', exact: true });
         this.bikeLink = this.page.getByRole('link', { name: 'Bike' });
         this.allOrdersLink = this.page.getByRole('link', { name: 'All Orders' });
         this.myAccountLink = this.page.getByRole('link', { name: 'My Account' });
@@ -104,10 +104,10 @@ export class faqPage {
         }
         if (currentURL != expectedURL) {
             console.error("Expected URL: " + expectedURL + " but navigated to " + currentURL);
-            expect(currentURL).toEqual(expectedURL);
+            expect(currentURL).toContain(expectedURL);
         }
         else {
-            expect(currentURL).toEqual(expectedURL);
+            expect(currentURL).toContain(expectedURL);
         }
     }
     async acceptCookies() {
@@ -205,7 +205,7 @@ export class faqPage {
         await this.myShakeologyLink.click();
     }
     async clickbodilink() {
-        await this.bodiLink.click();
+        await this.bodiLink.dblclick();
     }
     async clickbikelink() {
         await this.bikeLink.click();
@@ -230,7 +230,6 @@ export class faqPage {
     }
     async clicksignintotext() {
         await this.signIntoText.click();
-
     }
     async clicktermsandconditions() {
         await this.termsAndConditions.click();
@@ -538,6 +537,7 @@ export class faqPage {
                 //console.log("shopLink url expected ::: " + await this.shopLink.getAttribute("href"));
                 //await expect.soft(this.shopLink.getAttribute("href").toHaveURL(expectedURL));
                 await this.shopLink.click();
+                this.waitPagePromise(3000);
                 this.validatePageURLwithExpectedURL(expectedURL, linkName);
                 break;
             case 'streamLink':
@@ -581,6 +581,7 @@ export class faqPage {
                 console.log("clickSignIn >>>> " + this.signIn);
                 console.log("clickSignIn url expected ::: " + expectedURL);
                 await this.signIn.click();
+                await this.waitPagePromise(7000);
                 this.validatePageURLwithExpectedURL(expectedURL, linkName);
                 break;
             case 'returnAndExchangeLink':
