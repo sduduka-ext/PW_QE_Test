@@ -25,9 +25,11 @@ test.describe('Check URL and its links', async () => {
 
 
         await faqPageInstance.validatePageURLwithExpectedURL(process.env.FAQ_URL || 'https://default-url.com');
+        await faqPageInstance.waitPagePromise(2000);
         await expect(page).toHaveTitle(/BODI/);
         await page.getByText('Welcome to BODi Support').isVisible();
         await faqPageInstance.verifySiteError();
+        await faqPageInstance.waitPagePromise(3000);
         if (await page.getByRole('img', { name: 'Close this dialog' }).isVisible()) {
             console.log("before Clicking on the cookie dialog");
             await page.getByRole('img', { name: 'Close this dialog' }).click();
