@@ -1,0 +1,91 @@
+#how to run script in github playwright script
+name: API Tests
+#on: [workflow_dispatch]
+  # push:
+  #   branches: [ main ]
+  # pull_request:
+  #   branches: [ main ]
+on:
+  workflow_dispatch:
+    inputs:
+      ENV:
+        description: 'Environment' #'Environment to run tests against'
+        type: choice
+        required: true
+        options:
+        - stage
+        - qa
+      LOCALE:
+        description: 'Locale' #'Environment to run tests against locale'
+        type: choice
+        default: 'enUS'
+        required: true
+        options:
+        - enUS
+        - enCA
+      browser :
+        description: 'Browser' #'Test scenario tags'
+        required: true
+        default: 'chromium'
+        type: choice
+        options:
+        - chromium
+        - webkit
+        - firefox
+        #- all
+      tags:
+        description: 'Test scenario tags' #example: smoke, regression,sanity, all
+        required: false
+        default: ''
+        type: choice
+        options:
+        - sanity
+        - smoke
+        - criticalregression
+      # testName:
+      #   description: 'Run Test with name' #example: Link Shop, Stream
+      #   required: false
+      #   default: ''
+      #   type: string
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: ''
+        type: choice
+        options:
+        - info
+        - warning
+        - debug
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: lts/*
+    - name: Install dependencies
+      run: npm ci
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps chromium
+    - name: To load env variables Install dotenv package
+      run: npm install dotenv --save
+    - name: To load cross env var package
+      run: npm install --save-dev cross-env
+      
+    # - name: Set environment instance for run
+    #   run: $env:ENV='${{ github.event.inputs.ENV }}'
+    - name: Run Playwright tests from package.json file mentioned
+      # if: ${{ github.event.inputs.testName != '' }}
+      run: |
+        echo "Running tests with the following parameters: ${{ github.event.inputs.browser }}_${{ github.event.inputs.tags }}_${{ github.event.inputs.ENV }}_${{ github.event.inputs.LOCALE }}"
+        npm run testapi
+        
+        
+    - uses: actions/upload-artifact@v4
+      if: ${{ !cancelled() }}
+      with:
+        name: playwright-report
+        path: playwright-report/
+        retention-days: 15
