@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "testapi": "cross-env ENV=qa npx playwright test tests/qetest/apitest.spec.ts --project chromium",
     "test": "cross-env ENV=stage npx playwright test tests/qetest/test-url-qe.spec.ts --project chromium",
     "test:qa": "cross-env ENV=qa npx playwright test tests/qetest/test-url-qe.spec.ts -g \"Link Shop\" --project chromium",
     "test:stage": "cross-env ENV=stage npx playwright test tests/qetest/test-url-qe.spec.ts -g \"Link Shop\" --project chromium",
